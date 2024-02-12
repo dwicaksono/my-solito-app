@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "solito-nativewind",
+    "slug": "solito-nativewind",
+    "version": "1.0.0",
+    "scheme": "solito-nativewind",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.solito.nativewind"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "296a5974-6817-42b3-9621-734adf841e88"
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": "0.0.0",
+  "name": "app",
+  "main": "index.ts",
+  "dependencies": {
+    "@tanstack/react-query": "^5.20.1",
+    "moti": "latest",
+    "nativewind": "2.0.11",
+    "react-hook-form": "^7.50.1",
+    "solito": "4.0.1",
+    "zod": "^3.22.4",
+    "zustand": "^4.5.0"
+  },
+  "sideEffects": false
+}

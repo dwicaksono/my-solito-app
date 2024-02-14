@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { getDataToken, getOneUser } from 'app/api'
 import { useGlobalState } from 'app/provider'
-import { useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 export const useCheckToken = () => {
   const { isLogin, setIsLogin } = useGlobalState()
@@ -23,4 +23,13 @@ export const useGetUser = () => {
     queryFn: () => getOneUser(),
   })
   return { data, isError, isPending }
+}
+
+export const useScrollY = () => {
+  const [scrollY, setScrollY] = useState(0)
+
+  const handleScroll = useCallback((event) => {
+    setScrollY(event.nativeEvent.contentOffset.y)
+  }, [])
+  return { handleScroll, scrollY }
 }

@@ -19,6 +19,8 @@ const nextConfig = {
     'react-native-reanimated',
     'nativewind',
     'react-native-gesture-handler',
+    'react-native-reanimated-carousel',
+    'react-native-toast-message',
   ],
   images: {
     remotePatterns: [

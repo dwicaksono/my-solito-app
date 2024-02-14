@@ -3,8 +3,6 @@ import { FontAwesome } from '@expo/vector-icons'
 import { Provider } from 'app/provider'
 import { HomeScreen } from 'app/features/home/screen'
 import { useCheckToken } from 'app/hooks'
-import { View, Text } from 'react-native'
-import { CartIcon, ShirtIcon, TopNavigation } from 'app/components'
 
 export default function Root() {
   const { isLogin } = useCheckToken()

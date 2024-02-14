@@ -60,7 +60,15 @@ export const getProducts = async (queryParams?: Record<string, string>) => {
   }
 }
 
-export const getOneProduct = async (id: string) => {}
+export const getOneProduct = async (id: string) => {
+  try {
+    const res = await fetch(`${baseUrl}/products/${id}`)
+    const responseJson = await res.json()
+    return responseJson
+  } catch (error) {
+    return error
+  }
+}
 export const getCategory = async () => {
   try {
     const res = await fetch(`${baseUrl}/products/categories`)

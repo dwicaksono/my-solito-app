@@ -36,7 +36,7 @@ const height = 34
 
 // this will only run on Web
 export function WebLayout({ children }: { children: React.ReactNode }) {
-  const { dataCart } = useGlobalState()
+  const { totalCart } = useGlobalState()
   const { pathname } = useRouter()
   const { isLogin } = useCheckToken()
   if (!isLogin) {
@@ -67,11 +67,9 @@ export function WebLayout({ children }: { children: React.ReactNode }) {
                     <View className="absolute -left-1 bottom-0">
                       {tab.component}
                     </View>
-                    {tab.pathname === '/cart' && dataCart.length > 0 && (
+                    {tab.pathname === '/cart' && totalCart > 0 && (
                       <View className="absolute right-0 top-0 flex h-4 w-4  animate-bounce items-center justify-center rounded-full bg-red-500">
-                        <Text className="text-xs text-white">
-                          {dataCart.length}
-                        </Text>
+                        <Text className="text-xs text-white">{totalCart}</Text>
                       </View>
                     )}
                   </View>

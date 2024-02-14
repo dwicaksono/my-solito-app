@@ -12,7 +12,11 @@ import CloverIcon from './clover-icon'
 import ShirtIcon from './shirt-icon'
 import CardProduct from './card-product'
 import StarIcon from './star-icon'
+import Loading from './loading'
+import ArrowIcon from './arrow-icon'
+import MobileNavigation from './mobile-navigation'
 export {
+  MobileNavigation,
   FormLogin,
   LogoSvg,
   ProfileIcon,
@@ -21,10 +25,12 @@ export {
   CardHistory,
   CardScrollHistory,
   RingIcon,
+  Loading,
   ShirtIcon,
   ElectronicIcon,
   TopNavigation,
   CloverIcon,
   BigHero,
+  ArrowIcon,
   StarIcon,
 }

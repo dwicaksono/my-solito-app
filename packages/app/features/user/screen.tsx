@@ -3,7 +3,12 @@ import { H1, P, Text } from 'app/design/typography'
 import { useQuery } from '@tanstack/react-query'
 import { getOneUser, getProducts, logout } from 'app/api'
 import { Row } from 'app/design/layout'
-import { CardHistory, ProfileIcon, CardScrollHistory } from 'app/components'
+import {
+  CardHistory,
+  ProfileIcon,
+  CardScrollHistory,
+  Loading,
+} from 'app/components'
 import { Platform } from 'react-native'
 import { useGlobalState } from 'app/provider'
 import { useRouter } from 'solito/router'
@@ -19,11 +24,7 @@ export function UserInfo({ navigation }: { navigation?: React.ReactNode }) {
   })
 
   if (isPending) {
-    return (
-      <View className="flex h-72 items-center justify-center">
-        <Text>Loading...</Text>
-      </View>
-    )
+    return <Loading />
   }
   return (
     <View className=" flex-1">

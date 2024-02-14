@@ -3,10 +3,12 @@ import { TextInputed, View } from 'app/design/view'
 
 import {
   BigHero,
+  CardHistory,
   CardProduct,
   CloverIcon,
   ElectronicIcon,
   FormLogin,
+  Loading,
   RingIcon,
   ShirtIcon,
 } from 'app/components'
@@ -48,21 +50,22 @@ export function HomeScreen() {
     const scrollPosition = event.nativeEvent.contentOffset.y
     setScrollY(scrollPosition)
   }
-
+  if (isPending) {
+    return <Loading />
+  }
   return (
     <View>
       <View className="fixed z-50 w-full lg:top-16">
         <BigHero />
         <View className="absolute h-60 w-full bg-white/30 p-16 md:h-[400px]">
           <TextInputed
-            className=" rounded-full bg-white px-2 text-xs text-gray-400 lg:px-4 lg:py-4"
+            className=" rounded-full bg-white px-2 text-xs text-gray-400 md:px-4 md:py-4"
             placeholder="Search"
           />
         </View>
       </View>
-      {/* )} */}
-      <ScrollView onScroll={handleScroll} className="">
-        <View className="relative flex items-center justify-center lg:mt-[400px]">
+      <ScrollView onScroll={handleScroll}>
+        <View className="justify-\ flex w-full items-center lg:mt-[400px]">
           <View className="flex w-full flex-row items-start justify-between px-8 py-4 shadow-lg backdrop-blur-lg  lg:mt-10 lg:w-fit lg:justify-center lg:rounded-xl lg:bg-orange-400">
             {!isPending &&
               data?.length > 0 &&

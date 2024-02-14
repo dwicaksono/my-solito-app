@@ -1,9 +1,2 @@
-import { useGlobalState } from 'app/provider'
-import React from 'react'
-
-const Cart = () => {
-  const { dataCart } = useGlobalState()
-  return <div>{JSON.stringify(dataCart)}</div>
-}
-
+import Cart from 'app/features/cart/screen'
 export default Cart

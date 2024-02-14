@@ -8,7 +8,7 @@ import StarIcon from './star-icon'
 
 const CardProduct = ({ image, title, price, rate, count }) => {
   return (
-    <View className="m-4 overflow-hidden rounded-md bg-white">
+    <View className="m-4  overflow-hidden rounded-md bg-white">
       <View className="w-36 overflow-hidden rounded-md" style={styles.shadow}>
         <View className="relative h-32 w-36  bg-slate-400 object-cover object-center">
           <SolitoImage
@@ -28,7 +28,7 @@ const CardProduct = ({ image, title, price, rate, count }) => {
           </View>
         </View>
       </View>
-      <View className="flex w-36 flex-col p-2">
+      <View className="flex w-36 flex-col justify-between p-2">
         <Text numberOfLines={2} className="whitespace-break-spaces  text-xs">
           {title}
         </Text>

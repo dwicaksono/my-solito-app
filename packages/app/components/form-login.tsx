@@ -1,12 +1,12 @@
 import { Text } from 'app/design/typography'
-import { View, TextInputed, Trigger } from 'app/design/view'
+import { View, TextInputed } from 'app/design/view'
 import { useForm, Controller } from 'react-hook-form'
 import LogoSvg from './logo'
 import { Pressable } from 'react-native'
 import { login, storeDataToken } from 'app/api'
 import { useGlobalState } from 'app/provider'
 import { useMutation } from '@tanstack/react-query'
-import { useState } from 'react'
+import Toast from 'react-native-toast-message'
 const FormLogin = () => {
   const {
     register,
@@ -29,18 +29,19 @@ const FormLogin = () => {
       return login(username, password)
     },
     onSuccess: (data) => {
-      console.log(data.token)
       if (data?.token) {
         setIsLogin(true)
         storeDataToken(data.token)
       } else {
-        alert('Username or password is wrong!')
+        Toast.show({
+          type: 'error',
+          text1: 'Username or password is wrong!',
+        })
       }
     },
   })
 
   const onsubmit = async (data: any) => {
-    console.log(data)
     const { username, password } = data
     mutateAsync({ username, password })
   }

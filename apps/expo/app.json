@@ -4,16 +4,33 @@
     "slug": "solito-nativewind",
     "version": "1.0.0",
     "scheme": "solito-nativewind",
-    "platforms": [
-      "ios",
-      "android"
-    ],
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "platforms": ["ios", "android"],
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
     "ios": {
+      "supportsTablet": true,
       "bundleIdentifier": "com.solito.nativewind"
     },
     "extra": {
       "eas": {
         "projectId": "296a5974-6817-42b3-9621-734adf841e88"
+      }
+    },
+    "android": {
+      "package": "com.solito.nativewind",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
       }
     }
   }

@@ -1,33 +1,34 @@
-// import { useAuth } from 'app/features/auth/context'
 import { View } from 'app/design/view'
-import { Text } from 'app/design/typography'
 import { Row } from 'app/design/layout'
 import { useRouter } from 'next/router'
 import { Fragment } from 'react'
 import { Link } from 'solito/link'
-import { useLogin } from 'app/provider'
+import { LogoSvg } from 'app/components'
+import { ProfileIcon, CartIcon } from 'app/components'
+import { useCheckToken } from 'app/hooks'
+import { Text } from 'app/design/typography'
+import { useGlobalState } from 'app/provider'
 
 const tabs: Array<{
   pathname: string
   isActive(pathname: string): boolean
   name: string
   protected?: boolean
+  component?: React.ReactNode
 }> = [
-  {
-    pathname: '/',
-    isActive: (pathname) => pathname === '/',
-    name: 'Home',
-  },
   {
     pathname: '/user',
     isActive: (pathname) => pathname.startsWith('/user'),
-    name: 'Users',
+    name: 'Profile',
     protected: true,
+    component: <ProfileIcon />,
   },
   {
-    pathname: '/account',
-    isActive: (pathname) => pathname.startsWith('/account'),
-    name: 'My Account',
+    pathname: '/cart',
+    isActive: (pathname) => pathname.startsWith('/cart'),
+    name: 'Cart',
+    component: <CartIcon />,
+    protected: true,
   },
 ]
 
@@ -35,15 +36,21 @@ const height = 34
 
 // this will only run on Web
 export function WebLayout({ children }: { children: React.ReactNode }) {
+  const { dataCart } = useGlobalState()
   const { pathname } = useRouter()
-  const { isLogin } = useLogin()
+  const { isLogin } = useCheckToken()
   if (!isLogin) {
     return <>{children}</>
   }
   return (
     <>
-      <View className=" justify-center bg-slate-500 p-8">
-        <Row className="justify-center gap-4">
+      <Row className="fixed top-0 z-40 flex w-full items-center justify-between border-b border-b-orange-300 bg-white/50 p-4 drop-shadow-md backdrop-blur-sm">
+        <Row>
+          <Link href="/">
+            <LogoSvg width={height} height={height} />
+          </Link>
+        </Row>
+        <Row className=" w-fit justify-end gap-8">
           {tabs.map((tab) => {
             const active = tab.isActive(pathname)
             if (tab.protected && !isLogin) {
@@ -52,29 +59,29 @@ export function WebLayout({ children }: { children: React.ReactNode }) {
             return (
               <Fragment key={tab.pathname}>
                 <Link href={tab.pathname}>
-                  <Text
+                  <View
                     className={`${
-                      active ? 'text-pink-500' : 'text-white'
-                    } font-bold`}
+                      active && 'bg-orange-400'
+                    } relative h-7 w-7 items-center rounded-full transition-all duration-500`}
                   >
-                    {tab.name}
-                  </Text>
+                    <View className="absolute -left-1 bottom-0">
+                      {tab.component}
+                    </View>
+                    {tab.pathname === '/cart' && dataCart.length > 0 && (
+                      <View className="absolute right-0 top-0 flex h-4 w-4  animate-bounce items-center justify-center rounded-full bg-red-500">
+                        <Text className="text-xs text-white">
+                          {dataCart.length}
+                        </Text>
+                      </View>
+                    )}
+                  </View>
                 </Link>
               </Fragment>
             )
           })}
         </Row>
-        {/* <Text
-          href="https://twitter.com/fernandotherojo"
-          hrefAttrs={{
-            target: '_blank',
-            rel: 'noreferrer',
-          }}
-        >
-          by Fernando Rojo
-        </Text> */}
-      </View>
-      {children}
+      </Row>
+      <View className="pt-16">{children}</View>
     </>
   )
 }

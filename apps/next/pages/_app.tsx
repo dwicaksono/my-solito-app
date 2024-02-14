@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Solito Example App</title>
         <meta
           name="description"
-          content="Expo + Next.js with Solito. By Fernando Rojo."
+          content="Testing Solito with Next.js and TailwindCSS. project by @dwicaksono"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

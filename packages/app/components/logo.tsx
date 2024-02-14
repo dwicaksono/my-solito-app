@@ -1,5 +1,3 @@
-import * as React from 'react'
-import { Platform } from 'react-native'
 import Svg, { SvgProps, Path } from 'react-native-svg'
 const LogoSvg = (props: SvgProps) => {
   return (

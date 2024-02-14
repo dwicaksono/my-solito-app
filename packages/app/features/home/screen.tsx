@@ -1,36 +1,121 @@
-import { A, H1, P, Text, TextLink } from 'app/design/typography'
-import { Row } from 'app/design/layout'
-import { View } from 'app/design/view'
+import { Text } from 'app/design/typography'
+import { TextInputed, View } from 'app/design/view'
 
-import { baseUrl } from 'app/api'
-import { useLogin } from 'app/provider'
-import { Button } from 'react-native'
-import { FormLogin } from 'app/components'
+import {
+  BigHero,
+  CardProduct,
+  CloverIcon,
+  ElectronicIcon,
+  FormLogin,
+  RingIcon,
+  ShirtIcon,
+} from 'app/components'
+import { useCheckToken } from 'app/hooks'
+import { useQuery } from '@tanstack/react-query'
+import { getCategory, getProducts } from 'app/api'
+import { FlatList, Platform, ScrollView } from 'react-native'
+import { Link } from 'solito/link'
+import { useEffect, useState } from 'react'
 export function HomeScreen() {
-  const { isLogin, setIsLogin } = useLogin()
-  console.log(isLogin)
+  const [scrollY, setScrollY] = useState(0)
+  const { data, isPending } = useQuery({
+    queryKey: ['categories'],
+    queryFn: () => getCategory(),
+  })
+  const { data: products, isPending: isPendingProducts } = useQuery({
+    queryKey: ['products'],
+    queryFn: () => getProducts(),
+  })
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+    if (Platform.OS === 'web') {
+      window.addEventListener('scroll', handleScroll)
+      return () => {
+        window.removeEventListener('scroll', handleScroll)
+      }
+    }
+  }, [])
+
+  const { isLogin } = useCheckToken()
   if (!isLogin) {
     return <FormLogin />
   }
+
+  const handleScroll = (event) => {
+    const scrollPosition = event.nativeEvent.contentOffset.y
+    setScrollY(scrollPosition)
+  }
+
   return (
-    <View className="flex-1 items-center justify-center p-3">
-      <H1 className="text-emerald-600">Welcome to Test Project.</H1>
-      <H1 className="text-emerald-600">
-        this flag login {JSON.stringify(isLogin)}
-      </H1>
-      <View className="max-w-xl">
-        <P className="text-center">
-          Here is a basic starter to show you how you can navigate from one
-          screen to another. This screen uses the same code on Next.js and React
-          Native.
-        </P>
-        <P className="text-center">One Component</P>
+    <View>
+      <View className="fixed z-50 w-full lg:top-16">
+        <BigHero />
+        <View className="absolute h-60 w-full bg-white/30 p-16 md:h-[400px]">
+          <TextInputed
+            className=" rounded-full bg-white px-2 text-xs text-gray-400 lg:px-4 lg:py-4"
+            placeholder="Search"
+          />
+        </View>
       </View>
-      <View className="h-[32px]" />
-      <Row className="space-x-8">
-        <TextLink href="/user/fernando">Regular Link</TextLink>
-        <Text>{baseUrl}</Text>
-      </Row>
+      {/* )} */}
+      <ScrollView onScroll={handleScroll} className="">
+        <View className="relative flex items-center justify-center lg:mt-[400px]">
+          <View className="flex w-full flex-row items-start justify-between px-8 py-4 shadow-lg backdrop-blur-lg  lg:mt-10 lg:w-fit lg:justify-center lg:rounded-xl lg:bg-orange-400">
+            {!isPending &&
+              data?.length > 0 &&
+              data.map((category) => (
+                <View
+                  className="flex w-20 items-center justify-center gap-2 lg:w-32 "
+                  key={category}
+                >
+                  <View className="justify-top flex w-fit flex-col items-start  rounded-md  bg-white p-2 lg:p-4">
+                    {listIconCategory(category)}
+                  </View>
+                  <Text className="text-center">{category}</Text>
+                </View>
+              ))}
+          </View>
+          <View className="flex w-full justify-center lg:mt-10">
+            <FlatList
+              scrollEnabled={false}
+              numColumns={Platform.OS === 'web' ? 4 : 2}
+              key={Platform.OS === 'web' ? 4 : 2}
+              data={products}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => (
+                <Link href={`/product/${item.id}`}>
+                  <CardProduct
+                    image={item.image}
+                    title={item.title}
+                    price={item.price}
+                    rate={item.rating.rate}
+                    count={item.rating.count}
+                  />
+                </Link>
+              )}
+              contentContainerStyle={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            />
+          </View>
+        </View>
+      </ScrollView>
     </View>
   )
+}
+
+const listIconCategory = (category) => {
+  const typeIcon = {
+    electronics: <ElectronicIcon stroke="orange" />,
+    jewelery: <RingIcon stroke="orange" />,
+    "men's clothing": <ShirtIcon stroke="orange" />,
+    "women's clothing": <CloverIcon stroke="orange" />,
+  }
+  return typeIcon[category]
 }

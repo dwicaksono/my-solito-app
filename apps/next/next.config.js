@@ -9,6 +9,7 @@ const nextConfig = {
   // once that gets fixed, set this back to true
   reactStrictMode: false,
   transpilePackages: [
+    '@react-native-async-storage/async-storage',
     'react-native',
     'react-native-web',
     'react-native-svg',
@@ -19,6 +20,14 @@ const nextConfig = {
     'nativewind',
     'react-native-gesture-handler',
   ],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*',
+      },
+    ],
+  },
 }
 
 module.exports = withExpo(nextConfig)

@@ -1,2 +1,2 @@
-import { UsersListScreen } from 'app/features/user/list-screen'
-export default UsersListScreen
+import { UserInfo } from 'app/features/user/screen'
+export default UserInfo

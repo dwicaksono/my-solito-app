@@ -39,7 +39,7 @@ const ProductDetail = () => {
     return <Loading />
   }
 
-  const handleAddToCart = (type: 'buy' | 'cart', data) => {
+  const handleAddToCart = (type: 'buy' | 'cart', data: any) => {
     addCart(data)
     if (type === 'buy') {
       push('/cart')

@@ -7,10 +7,19 @@ import { useGlobalState } from 'app/provider'
 import { Row } from 'app/design/layout'
 import { Link } from 'solito/link'
 
-const CardScrollHistory = ({ isProductsPending, products, isCart = false }) => {
+interface CardScrollHistoryProps {
+  isProductsPending: boolean
+  products: any[]
+  isCart?: boolean
+}
+const CardScrollHistory = ({
+  isProductsPending,
+  products,
+  isCart = false,
+}: CardScrollHistoryProps) => {
   const { addCart, increaseItem, decreaseItem, removeCart } = useGlobalState()
 
-  const adjustQty = (id, type: 'inc' | 'dec') => {
+  const adjustQty = (id: number, type: 'inc' | 'dec') => {
     if (type === 'inc') {
       increaseItem(id)
     } else if (
@@ -21,7 +30,7 @@ const CardScrollHistory = ({ isProductsPending, products, isCart = false }) => {
     }
   }
 
-  const handleProductItem = (product, isCart) => {
+  const handleProductItem = (product: any, isCart: boolean) => {
     if (isCart) {
       removeCart(product)
     } else {

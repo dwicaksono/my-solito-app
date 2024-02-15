@@ -6,7 +6,13 @@ import { Pressable } from 'react-native'
 import { useGlobalState } from 'app/provider'
 import { Link } from 'solito/link'
 
-const CardHistory = ({ isPending, products }) => {
+const CardHistory = ({
+  isPending,
+  products,
+}: {
+  isPending: boolean
+  products: any[]
+}) => {
   const { addCart } = useGlobalState()
   return (
     <View className="grid gap-4 px-8 md:grid-cols-2 lg:grid-cols-3">

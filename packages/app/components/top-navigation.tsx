@@ -4,7 +4,12 @@ import { Text } from 'app/design/typography'
 import { Link } from 'solito/link'
 import { useGlobalState } from 'app/provider'
 
-const TopNavigation = ({ href, leftIcon, cartIcon }) => {
+interface TopNavigationProps {
+  href: string
+  leftIcon: React.ReactNode
+  cartIcon: React.ReactNode
+}
+const TopNavigation = ({ href, leftIcon, cartIcon }: TopNavigationProps) => {
   const { dataCart } = useGlobalState()
   return (
     <View className="mt-8 flex flex-row justify-between p-4">

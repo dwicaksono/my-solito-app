@@ -28,7 +28,7 @@ export const useGetUser = () => {
 export const useScrollY = () => {
   const [scrollY, setScrollY] = useState(0)
 
-  const handleScroll = useCallback((event) => {
+  const handleScroll = useCallback((event: any) => {
     setScrollY(event.nativeEvent.contentOffset.y)
   }, [])
   return { handleScroll, scrollY }

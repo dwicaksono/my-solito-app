@@ -6,7 +6,20 @@ import { StyleSheet } from 'react-native'
 import { SolitoImage } from 'solito/image'
 import StarIcon from './star-icon'
 
-const CardProduct = ({ image, title, price, rate, count }) => {
+interface CardProductProps {
+  image: string
+  title: string
+  price: number
+  rate: number
+  count: number
+}
+const CardProduct = ({
+  image,
+  title,
+  price,
+  rate,
+  count,
+}: CardProductProps) => {
   return (
     <View className="m-4  overflow-hidden rounded-md bg-white">
       <View className="w-36 overflow-hidden rounded-md" style={styles.shadow}>

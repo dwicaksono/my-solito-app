@@ -46,7 +46,7 @@ export function HomeScreen() {
     return <FormLogin />
   }
 
-  const handleScroll = (event) => {
+  const handleScroll = (event: any) => {
     const scrollPosition = event.nativeEvent.contentOffset.y
     setScrollY(scrollPosition)
   }
@@ -69,7 +69,7 @@ export function HomeScreen() {
           <View className="flex w-full flex-row items-start justify-between px-8 py-4 shadow-lg backdrop-blur-lg  lg:mt-10 lg:w-fit lg:justify-center lg:rounded-xl lg:bg-orange-400">
             {!isPending &&
               data?.length > 0 &&
-              data.map((category) => (
+              data.map((category: any) => (
                 <View
                   className="flex w-20 items-center justify-center gap-2 lg:w-32 "
                   key={category}
@@ -112,9 +112,8 @@ export function HomeScreen() {
     </View>
   )
 }
-
-const listIconCategory = (category) => {
-  const typeIcon = {
+const listIconCategory = (category: string) => {
+  const typeIcon: any = {
     electronics: <ElectronicIcon stroke="orange" />,
     jewelery: <RingIcon stroke="orange" />,
     "men's clothing": <ShirtIcon stroke="orange" />,

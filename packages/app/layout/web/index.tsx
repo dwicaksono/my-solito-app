@@ -42,6 +42,7 @@ export function WebLayout({ children }: { children: React.ReactNode }) {
   if (!isLogin) {
     return <>{children}</>
   }
+  console.log('totalCart', totalCart)
   return (
     <>
       <Row className="fixed top-0 z-40 flex w-full items-center justify-between border-b border-b-orange-300 bg-white/50 p-4 drop-shadow-md backdrop-blur-sm">

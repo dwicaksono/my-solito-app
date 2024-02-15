@@ -10,7 +10,7 @@ interface initialStateStore {
   isLogin: boolean
   dataCart: any[] | []
   totalCart: number
-  setIsLogin: (boolean) => void
+  setIsLogin: (login: boolean) => void
   addCart: (product: any) => void
   removeCart: (product: any) => void
   decreaseItem: (id: number | string) => void
@@ -76,11 +76,12 @@ export const useGlobalState = create<initialStateStore>()(
                 ...item,
                 qty: item.qty + 1,
                 subPrice: item.subPrice + item.price,
+                totalCart: state.totalCart + 1,
               }
             }
             return item
           })
-          return { dataCart: increaseData }
+          return { dataCart: increaseData, totalCart: state.totalCart + 1 }
         })
       },
       decreaseItem: (id: number | string) => {
@@ -98,7 +99,7 @@ export const useGlobalState = create<initialStateStore>()(
             }
             return item
           })
-          return { dataCart: decreaseData }
+          return { dataCart: decreaseData, totalCart: state.totalCart - 1 }
         })
       },
       removeCart: (product) => {

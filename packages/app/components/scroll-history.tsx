@@ -5,6 +5,7 @@ import { SolitoImage } from 'solito/image'
 import { Pressable } from 'react-native'
 import { useGlobalState } from 'app/provider'
 import { Row } from 'app/design/layout'
+import { Link } from 'solito/link'
 
 const CardScrollHistory = ({ isProductsPending, products, isCart = false }) => {
   const { addCart, increaseItem, decreaseItem, removeCart } = useGlobalState()
@@ -38,15 +39,17 @@ const CardScrollHistory = ({ isProductsPending, products, isCart = false }) => {
             key={product.id}
           >
             <View className="flex flex-row gap-3 ">
-              <View className="relative h-32 w-32 overflow-hidden rounded-md border border-gray-400/40 object-cover p-8">
-                <SolitoImage
-                  contentFit="cover"
-                  contentPosition="top center"
-                  src={product.image}
-                  fill
-                  alt="A cool artist's image."
-                />
-              </View>
+              <Link href={`/product/${product.id}`}>
+                <View className="relative h-32 w-32 overflow-hidden rounded-md border border-gray-400/40 object-cover p-8">
+                  <SolitoImage
+                    contentFit="cover"
+                    contentPosition="top center"
+                    src={product.image}
+                    fill
+                    alt="A cool artist's image."
+                  />
+                </View>
+              </Link>
               <View className=" flex-1 flex-col ">
                 <Text
                   numberOfLines={2}

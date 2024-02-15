@@ -78,7 +78,7 @@ const ProductDetail = () => {
 
             <View className="mt-8 w-full flex-row ">
               <Pressabled
-                className="mr-3 w-1/2 border-2 border-orange-400 bg-orange-200 p-4 text-center"
+                className="mr-3 w-1/2 border-2 border-orange-400 bg-orange-200 py-4 text-center"
                 onPress={() => handleAddToCart('cart', data)}
               >
                 <Text className="text-center font-bold text-orange-400">
@@ -86,7 +86,7 @@ const ProductDetail = () => {
                 </Text>
               </Pressabled>
               <Pressabled
-                className="w-1/2  bg-orange-400 p-4 text-center"
+                className="w-1/2  bg-orange-400 py-4 text-center"
                 onPress={() => handleAddToCart('buy', data)}
               >
                 <Text className="text-center font-bold text-white">

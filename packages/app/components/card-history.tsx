@@ -4,6 +4,7 @@ import { Text } from 'app/design/typography'
 import { SolitoImage } from 'solito/image'
 import { Pressable } from 'react-native'
 import { useGlobalState } from 'app/provider'
+import { Link } from 'solito/link'
 
 const CardHistory = ({ isPending, products }) => {
   const { addCart } = useGlobalState()
@@ -16,16 +17,18 @@ const CardHistory = ({ isPending, products }) => {
             className="flex flex-row gap-3 rounded-md border border-gray-400/40 p-4 shadow-md"
             key={product.id}
           >
-            <View className="relative h-32 w-32 overflow-hidden rounded-md  object-cover p-8">
-              <SolitoImage
-                contentFit="cover"
-                contentPosition="top center"
-                src={product.image}
-                fill
-                alt="A cool artist's image."
-                sizes="100%"
-              />
-            </View>
+            <Link href={`/product/${product.id}`}>
+              <View className="relative h-32 w-32 overflow-hidden rounded-md  object-cover p-8">
+                <SolitoImage
+                  contentFit="cover"
+                  contentPosition="top center"
+                  src={product.image}
+                  fill
+                  alt="A cool artist's image."
+                  sizes="100%"
+                />
+              </View>
+            </Link>
             <View className="flex flex-1 flex-col flex-wrap justify-between overflow-hidden">
               <Text className="line-clamp-2 w-full ">{product.title}</Text>
               <View className="flex flex-row items-center justify-between">

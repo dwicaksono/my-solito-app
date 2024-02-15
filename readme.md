@@ -10,3 +10,9 @@ This repository houses the Solito Monorepo, a cross-platform solution built usin
 4. **Scalable Solution:** Built to accommodate the growth of the project, providing a foundation for scalable and extensible applications.
 
 Feel free to explore, contribute, and leverage this monorepo for your cross-platform development needs!
+
+**copy and paste this url to your browser to see the list of usernames and passwords:**
+https://fakestoreapi.com/users
+
+**username:**jimmie_k
+**password:**klein*#%*

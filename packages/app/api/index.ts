@@ -26,7 +26,24 @@ export const storeDataToken = async (value) => {
     console.log(e)
   }
 }
+export const storeDataCart = async (value) => {
+  try {
+    await AsyncStorage.setItem('cart', value)
+  } catch (e) {
+    console.log(e)
+  }
+}
 
+export const getDataCart = async () => {
+  try {
+    const value = await AsyncStorage.getItem('cart')
+    if (value !== null) {
+      return value
+    }
+  } catch (e) {
+    console.log(e)
+  }
+}
 export const getDataToken = async () => {
   try {
     const value = await AsyncStorage.getItem('token')
@@ -38,6 +55,13 @@ export const getDataToken = async () => {
   }
 }
 
+export const clearCart = async () => {
+  try {
+    await AsyncStorage.removeItem('cart')
+  } catch (e) {
+    console.log(e)
+  }
+}
 export const logout = async () => {
   try {
     await AsyncStorage.removeItem('token')
@@ -93,7 +117,21 @@ export const formatRupiah = (amount: number): string => {
   return new Intl.NumberFormat('id-ID', {
     style: 'currency',
     currency: 'IDR',
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 2,
     minimumFractionDigits: 0,
   }).format(amount)
+}
+
+export const sumTotalPayment = (data) => {
+  let sum = 0
+
+  if (data?.length > 0) {
+    sum = data.reduce((accumulator, data) => {
+      return accumulator + data?.subPrice
+    }, 0)
+  }
+  if (!isNaN(sum)) {
+    const result = formatRupiah(sum)
+    return result
+  }
 }

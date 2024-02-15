@@ -55,8 +55,8 @@ const ProductDetail = () => {
         />
       )}
       <ScrollView className=" " onScroll={handleScroll}>
-        <View className=" h-screen  lg:flex lg:flex-row">
-          <View className=" h-[400px] overflow-hidden rounded-md object-cover  p-8 lg:h-[80%]  lg:w-1/2">
+        <View className="   lg:flex lg:flex-row">
+          <View className=" h-[400px] overflow-hidden rounded-md object-cover p-8 lg:h-screen  lg:w-1/2">
             <SolitoImage
               contentFit="cover"
               contentPosition="top center"

@@ -123,7 +123,7 @@ export const formatRupiah = (amount: number): string => {
   }).format(amount)
 }
 
-export const sumTotalPayment = (data) => {
+export const sumTotalPayment = (data: any[]) => {
   let sum = 0
 
   if (data?.length > 0) {

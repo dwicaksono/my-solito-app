@@ -19,14 +19,14 @@ export const login = async (username: string, password: string) => {
   }
 }
 
-export const storeDataToken = async (value) => {
+export const storeDataToken = async (value: string) => {
   try {
     await AsyncStorage.setItem('token', value)
   } catch (e) {
     console.log(e)
   }
 }
-export const storeDataCart = async (value) => {
+export const storeDataCart = async (value: any) => {
   try {
     await AsyncStorage.setItem('cart', value)
   } catch (e) {

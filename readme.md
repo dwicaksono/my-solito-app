@@ -14,5 +14,5 @@ Feel free to explore, contribute, and leverage this monorepo for your cross-plat
 **copy and paste this url to your browser to see the list of usernames and passwords:**
 https://fakestoreapi.com/users
 
-**username:**jimmie_k
-**password:**klein*#%*
+**username:** jimmie_k
+**password:** klein*#%*

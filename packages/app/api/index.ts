@@ -19,6 +19,7 @@ export const login = async (username: string, password: string) => {
   }
 }
 
+// token
 export const storeDataToken = async (value: string) => {
   try {
     await AsyncStorage.setItem('token', value)
